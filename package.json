@@ -1,6 +1,6 @@
 {
   "name": "angular-pouchdb-logger",
-  "version": "0.2.1",
+  "version": "0.2.2-dev",
   "description": "Enables logging to web database via pouchdb and $log delegate. The library is Ionic-aware and autoselect the best db for each platform",
   "homepage": "https://github.com/hypery2k/angular-pouchdb-logger",
   "authors": [
