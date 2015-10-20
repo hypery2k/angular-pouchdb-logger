@@ -226,11 +226,10 @@ core.config(function ($provide, loggerProvider, ngDbLoggerConfig) {
   // logging to pouchDB
   $provide.decorator('$log', ['$delegate', 'dbService', 'ngDbLoggerConfig',
     function ($delegate, dbService, ngDbLoggerConfig) {
-      /*if (loggerProvider.$get.length > 1) {
-       // solve uglify error
-       return loggerProvider.$get[1]($delegate);
-       } else {*/
-      return loggerProvider.$get($delegate, dbService, ngDbLoggerConfig);
-      // }
+      if (typeof loggerProvider.$get === "function") {
+        return loggerProvider.$get($delegate, dbService, ngDbLoggerConfig);
+      } else {
+        return loggerProvider.$get[3]($delegate, dbService, ngDbLoggerConfig);
+      }
     }]);
 });
