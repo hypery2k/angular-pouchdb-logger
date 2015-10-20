@@ -20,3 +20,6 @@ taget/*
 *.iml
 *.ipr
 *.iws
+
+# Test reports
+dist/test-report/*

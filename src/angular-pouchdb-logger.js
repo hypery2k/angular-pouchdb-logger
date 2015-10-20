@@ -1,4 +1,4 @@
-var core = angular.module('ngDbLogger.core', ['pouchdb']);
+var core = angular.module('ngDbLogger.core', []);
 
 // Core
 
@@ -10,7 +10,7 @@ core.constant('ngDbLoggerConfig', {
 });
 
 
-core.factory('dbService', function (pouchDB) {
+core.factory('dbService', function () {
   'use strict';
 
   var logDB;
@@ -18,11 +18,16 @@ core.factory('dbService', function (pouchDB) {
   // PUBLIC API
   return function (dbName) {
     if (!logDB) {
-      if (typeof ionic != 'undefined' && (ionic.Platform.isAndroid() || ionic.Platform.isWindowsPhone())) {
-        logDB = pouchDB(dbName, {adapter: 'idb', size: 50});
+      if (typeof ionic != 'undefined') {
+        if (ionic.Platform.isAndroid() || ionic.Platform.isWindowsPhone()) {
+          logDB = new PouchDB(dbName, {adapter: 'idb', size: 50});
+        } else {
+          // default use websql
+          logDB = new PouchDB(dbName, {adapter: 'websql', size: 50});
+        }
       } else {
         // default use websql
-        logDB = pouchDB(dbName, {adapter: 'websql', size: 50});
+        logDB = new PouchDB(dbName, {adapter: 'websql'});
       }
     }
     return logDB;
@@ -38,10 +43,11 @@ core.factory('dbLoggerService', function ($q, $log, dbService) {
       db = dbService(logConfig.dbName);
     db.allDocs({
       include_docs: true
-    })
-      .then(function (response) {
-        //, function (err, response) {
-
+    }, function (err, response) {
+      if (err) {
+        console.error('Error during writing log entries: ' + response);
+        deferred.reject(response);
+      } else {
         var logs = [];
         for (var id in response.rows) {
           var logEntry = response.rows[id].doc;
@@ -59,28 +65,25 @@ core.factory('dbLoggerService', function ($q, $log, dbService) {
           logs = null;
         }
         deferred.resolve(logs);
-      })
-      .catch(function (err) {
-        console.error('Error during writing log entries: ' + err);
-        deferred.reject(err);
-      });
-    return deferred.promise;
-  };
-  var deleteLogs = function () {
-    var deferred = $q.defer();
-    var db = dbService(logConfig.dbName);
-    db.destroy()
-      .then(function (response) {
-        console.info('Sucessfully cleared log database.');
-        deferred.resolve(response);
-      })
-      .catch(function (err) {
-        console.error('Error during clearing log database: ' + err);
-        deferred.reject(err);
-      });
+      }
+    });
     return deferred.promise;
   };
 
+  var deleteLogs = function () {
+    var deferred = $q.defer();
+    var db = dbService(logConfig.dbName);
+    db.destroy(function (err, response) {
+      if (err) {
+        console.error('Error during clearing log database: ' + response);
+        deferred.reject(response);
+      } else {
+        console.info('Sucessfully cleared log database.');
+        deferred.resolve(response);
+      }
+    });
+    return deferred.promise;
+  };
   // PUBLIC API
   return {
     readLogData: function (pLoglevel) {
