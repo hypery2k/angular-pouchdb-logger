@@ -18,7 +18,7 @@ core.factory('dbService', function () {
   // PUBLIC API
   return function (dbName) {
     if (!logDB) {
-      if (typeof ionic != 'undefined') {
+      if (typeof ionic != 'undefined' && typeof cordova != 'undefined') {
         if (ionic.Platform.isAndroid() || ionic.Platform.isWindowsPhone()) {
           logDB = new PouchDB(dbName, {adapter: 'idb', size: 50});
         } else {
