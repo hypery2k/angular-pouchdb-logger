@@ -50,6 +50,15 @@ module.exports = function (config) {
       "Chrome"
     ],
 
+    // This is the new content for your travis-ci configuration test
+    //  Custom launcher for Travis-CI
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
+
     // Which plugins to enable
     plugins: [
       "karma-phantomjs-launcher",
@@ -72,7 +81,7 @@ module.exports = function (config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false,
+    singleRun: true,
 
     colors: true,
 
@@ -87,4 +96,8 @@ module.exports = function (config) {
     // URL root prevent conflicts with the site root
     // urlRoot: '_karma_'
   });
+
+  if (process.env.TRAVIS) {
+    config.browsers = ['Chrome_travis_ci'];
+  }
 };
