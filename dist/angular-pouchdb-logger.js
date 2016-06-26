@@ -1,8 +1,8 @@
-/* angular-pouchdb-logger - Version 0.2.2-dev, 23-10-2015
+/* angular-pouchdb-logger - Version 0.2.3-dev, 26-06-2016
  * 
  * Enables logging to web database via pouchdb and $log delegate. The library is Ionic-aware and autoselect the best db for each platform
  * 
- * Copyright 2015  - Martin Reinhardt <contact@martinreinhardt-online.de>
+ * Copyright 2016  - Martin Reinhardt <contact@martinreinhardt-online.de>
  * License MIT
  */
 var core = angular.module('ngDbLogger.core', []);
@@ -26,11 +26,12 @@ core.factory('dbService', function () {
   return function (dbName) {
     if (!logDB) {
       if (typeof ionic != 'undefined' && typeof cordova != 'undefined') {
+        // cordova ionic platform
         if (ionic.Platform.isAndroid() || ionic.Platform.isWindowsPhone()) {
-          logDB = new PouchDB(dbName, {adapter: 'idb', size: 50});
+          logDB = new PouchDB(dbName, {adapter: 'idb', size: 50, location: 'default'});
         } else {
           // default use websql
-          logDB = new PouchDB(dbName, {adapter: 'websql', size: 50});
+          logDB = new PouchDB(dbName, {adapter: 'websql', size: 50, location: 'default'});
         }
       } else {
         // default use websql
