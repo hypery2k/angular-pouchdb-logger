@@ -5,11 +5,13 @@
 [![Build Status](https://travis-ci.org/hypery2k/angular-pouchdb-logger.svg?branch=master)](https://travis-ci.org/hypery2k/angular-pouchdb-logger)
 [![Build status](https://ci.appveyor.com/api/projects/status/qbdypq5n7p4x3i78?svg=true)](https://ci.appveyor.com/project/hypery2k/angular-pouchdb-logger)
 [![Bower version](https://badge.fury.io/bo/angular-pouchdb-logger.svg)](http://badge.fury.io/bo/angular-pouchdb-logger)
-[![ NPM devDependency Status](https://david-dm.org/hypery2k/angular-pouchdb-logger/dev-status.svg)](https://david-dm.org/hypery2k/angular-pouchdb-logger#info=devDependencies)
+[![npm version](https://badge.fury.io/js/angular-pouchdb-logger.svg)](http://badge.fury.io/js/angular-pouchdb-logger)
+[![NPM devDependency Status](https://david-dm.org/hypery2k/angular-pouchdb-logger/dev-status.svg)](https://david-dm.org/hypery2k/angular-pouchdb-logger#info=devDependencies)
 
 ## WIP
 - [x] Library core
 - [x] Write unit tests
+- [x] NPM package
 - [ ] Write e2e-tests
 - [ ] Write an API doc
 - [ ] Provide complete examples
@@ -17,6 +19,12 @@
 ## Usage
 
 Install this module:
+
+```bash
+npm install angular-pouchdb-logger --save
+```
+
+or via bower
 
 ```bash
 bower install angular-pouchdb-logger --save
