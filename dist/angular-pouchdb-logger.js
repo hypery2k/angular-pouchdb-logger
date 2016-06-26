@@ -1,4 +1,4 @@
-/* angular-pouchdb-logger - Version 0.3.0, 26-06-2016
+/* angular-pouchdb-logger - Version 0.3.1, 26-06-2016
  * 
  * Enables logging to web database via pouchdb and $log delegate. The library is Ionic-aware and autoselect the best db for each platform
  * 
@@ -26,7 +26,7 @@
     // PUBLIC API
     return function (dbName) {
       if (!logDB) {
-        if (typeof ionic != 'undefined' && typeof cordova != 'undefined') {
+        if (typeof ionic !== 'undefined' && typeof cordova !== 'undefined') {
           // cordova ionic platform
           if (ionic.Platform.isAndroid() || ionic.Platform.isWindowsPhone()) {
             logDB = new PouchDB(dbName, {adapter: 'idb', size: 50, location: 'default'});
@@ -43,6 +43,38 @@
     };
   });
 
+  function pushLogEntries(response, id, pLoglevel, logs) {
+    var logEntry = response.rows[id].doc;
+    if (pLoglevel) {
+      // filter
+      if (pLoglevel === logEntry.level) {
+        logs.push(logEntry);
+      }
+    } else {
+      // no filter
+      logs.push(logEntry);
+    }
+    return logEntry;
+  }
+
+  function collectLogs(err, response, deferred, pLoglevel) {
+    if (err) {
+      console.error('Error during writing log entries: ' + response);
+      deferred.reject(response);
+    } else {
+      var logs = [];
+      for (var id in response.rows) {
+        if ({}.hasOwnProperty.call(response.rows, id)) {
+          pushLogEntries(response, id, pLoglevel, logs);
+        }
+      }
+      if (logs.length === 0) {
+        logs = null;
+      }
+      deferred.resolve(logs);
+    }
+  }
+
   core.factory('dbLoggerService', ["$q", "$log", "dbService", function ($q, $log, dbService) {
     var logConfig = $log.getConfig();
     var readLogs = function (pLoglevel) {
@@ -51,28 +83,7 @@
       db.allDocs({
         include_docs: true
       }, function (err, response) {
-        if (err) {
-          console.error('Error during writing log entries: ' + response);
-          deferred.reject(response);
-        } else {
-          var logs = [];
-          for (var id in response.rows) {
-            var logEntry = response.rows[id].doc;
-            if (pLoglevel) {
-              // filter
-              if (pLoglevel == logEntry.level) {
-                logs.push(logEntry);
-              }
-            } else {
-              // no filter
-              logs.push(logEntry);
-            }
-          }
-          if (logs.length === 0) {
-            logs = null;
-          }
-          deferred.resolve(logs);
-        }
+        collectLogs(err, response, deferred, pLoglevel);
       });
       return deferred.promise;
     };
@@ -240,4 +251,4 @@
       }]);
   }]);
 
-})(angular);
+}(angular));

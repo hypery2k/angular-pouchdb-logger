@@ -1,6 +1,6 @@
 {
   "name": "angular-pouchdb-logger",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Enables logging to web database via pouchdb and $log delegate. The library is Ionic-aware and autoselect the best db for each platform",
   "homepage": "https://github.com/hypery2k/angular-pouchdb-logger",
   "authors": [
@@ -11,6 +11,8 @@
   "dependencies": {},
   "devDependencies": {
     "bower": "^1.4.1",
+    "coveralls": "2.11.9",
+    "eslint": "2.12.0",
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^3.0.3",
     "grunt-banner": "^0.4.0",
@@ -21,7 +23,6 @@
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-connect": "^0.10.1",
     "grunt-contrib-copy": "^0.8.0",
-    "grunt-contrib-jshint": "^0.11.2",
     "grunt-contrib-uglify": "^0.9.1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-filerev": "^2.3.1",
@@ -31,8 +32,11 @@
     "grunt-open": "^0.2.3",
     "grunt-text-replace": "^0.4.0",
     "grunt-usemin": "^3.0.0",
-    "jasmine-core": "^2.3.4",
-    "jshint-stylish": "^2.0.1",
+    "istanbul": "0.4.3",
+    "istanbul-coveralls": "1.0.3",
+    "jasmine": "2.4.1",
+    "jasmine-core": "2.4.1",
+    "jscoverage": "0.6.0",
     "karma": "0.13.8",
     "karma-chrome-launcher": "^0.2.1",
     "karma-jasmine": "0.3.6",
@@ -40,13 +44,17 @@
     "karma-junit-reporter": "0.3.3",
     "karma-phantomjs-launcher": "0.2.1",
     "load-grunt-tasks": "^3.2.0",
+    "nsp": "2.4.0",
     "time-grunt": "^1.2.1"
   },
   "main": "index.js",
+  "engine-strict": true,
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">= 4.2.x"
   },
   "scripts": {
+    "pretest": "eslint src/*.js && eslint test/*.js && nsp check",
+    "coverage": "istanbul --cover nodeunit test/tests.js && istanbul-coveralls --no-rm",
     "test": "grunt test"
   }
 }

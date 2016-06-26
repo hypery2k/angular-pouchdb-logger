@@ -111,23 +111,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Make sure code styles are up to par and there are no obvious mistakes
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
-      },
-      all: {
-        src: [
-          'Gruntfile.js',
-          '<%= yeoman.src %>/scripts/{,*/}*.js'
-        ]
-      },
-      test: {
-        src: ['<%= yeoman.test %>/spec/{,*/}*.js']
-      }
-    },
-
     // Empties folders to start fresh
     clean: {
       dist: {
@@ -197,7 +180,7 @@ module.exports = function (grunt) {
     },
     concat: {
       options: {
-        separator: ';',
+        separator: ';'
       },
       dist: {
         src: ['<%= yeoman.src %>/angular-pouchdb-logger.js'],
@@ -302,11 +285,6 @@ module.exports = function (grunt) {
   grunt.registerTask('debug', [
     'open:karma',
     'karma:dev'
-  ]);
-
-  grunt.registerTask('check', [
-    'jshint',
-    'build'
   ]);
 
   grunt.registerTask('default', [
