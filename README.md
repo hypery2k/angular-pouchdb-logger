@@ -8,6 +8,8 @@
 
 > A module for enabling logging to web database via pouchdb and $log delegate. The library is Ionic-aware and autoselect the best db for each platform
 
+[![NPM](https://nodei.co/npm/angular-pouchdb-logger.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/angular-pouchdb-logger/)
+
 > Feel free to **donate**
 > 
 > <a href='https://pledgie.com/campaigns/31915'><img alt='Click here to lend your support to: NPM packages and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/31915.png?skin_name=chrome' border='0' ></a>
