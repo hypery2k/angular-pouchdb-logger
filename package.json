@@ -1,13 +1,19 @@
 {
   "name": "angular-pouchdb-logger",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Enables logging to web database via pouchdb and $log delegate. The library is Ionic-aware and autoselect the best db for each platform",
   "homepage": "https://github.com/hypery2k/angular-pouchdb-logger",
   "authors": [
     "Martin Reinhardt <contact@martinreinhardt-online.de>"
   ],
   "license": "MIT",
-  "repository": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hypery2k/angular-pouchdb-logger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hypery2k/angular-pouchdb-logger/issues"
+  },
   "dependencies": {},
   "devDependencies": {
     "bower": "^1.4.1",
