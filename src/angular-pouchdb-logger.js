@@ -1,4 +1,4 @@
-(function (angular) {
+(function (angular, PouchDB) {
   'use strict';
 
   var core = angular.module('ngDbLogger.core', []);
@@ -244,4 +244,4 @@
       }]);
   });
 
-}(angular));
+}(angular, PouchDB));
