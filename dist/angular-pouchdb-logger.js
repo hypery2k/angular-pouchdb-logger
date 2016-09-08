@@ -1,7 +1,7 @@
 /* angular-pouchdb-logger - Version 0.3.4, 14-08-2016
- * 
+ *
  * Enables logging to web database via pouchdb and $log delegate. The library is Ionic-aware and autoselect the best db for each platform
- * 
+ *
  * Copyright 2016  - Martin Reinhardt <contact@martinreinhardt-online.de>
  * License MIT
  */
@@ -11,7 +11,7 @@
   var core = angular.module('ngDbLogger.core', []);
 
 // Core
-
+  /* @ngInject */
   core.constant('ngDbLoggerConfig', {
     dbName: 'logDB',
     dbLogging: true,
@@ -19,7 +19,7 @@
     trace: false
   });
 
-
+  /* @ngInject */
   core.factory('dbService', function () {
     var logDB;
 
@@ -75,6 +75,7 @@
     }
   }
 
+  /* @ngInject */
   core.factory('dbLoggerService', ["$q", "$log", "dbService", function ($q, $log, dbService) {
     var logConfig = $log.getConfig();
     var readLogs = function (pLoglevel) {
@@ -120,6 +121,7 @@
    * @module dbLog
    * @description Provides logging service in browser db.
    */
+  /* @ngInject */
   core.provider('logger', function loggerProvider() {
     'use strict';
 
@@ -237,7 +239,7 @@
       };
     }];
   });
-
+  /* @ngInject */
   core.config(["$provide", "loggerProvider", "ngDbLoggerConfig", function ($provide, loggerProvider, ngDbLoggerConfig) {
 
     // logging to pouchDB

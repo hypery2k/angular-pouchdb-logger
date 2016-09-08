@@ -4,7 +4,7 @@
   var core = angular.module('ngDbLogger.core', []);
 
 // Core
-
+  /* @ngInject */
   core.constant('ngDbLoggerConfig', {
     dbName: 'logDB',
     dbLogging: true,
@@ -12,7 +12,7 @@
     trace: false
   });
 
-
+  /* @ngInject */
   core.factory('dbService', function () {
     var logDB;
 
@@ -68,7 +68,8 @@
     }
   }
 
-  core.factory('dbLoggerService', function ($q, $log, dbService) {
+  /* @ngInject */
+  core.factory('dbLoggerService', ["$q", "$log", "dbService", function ($q, $log, dbService) {
     var logConfig = $log.getConfig();
     var readLogs = function (pLoglevel) {
       var deferred = $q.defer(),
@@ -105,7 +106,7 @@
       }
     };
 
-  });
+  }]);
 
   /**
    * @ngdoc service
@@ -113,6 +114,7 @@
    * @module dbLog
    * @description Provides logging service in browser db.
    */
+  /* @ngInject */
   core.provider('logger', function loggerProvider() {
     'use strict';
 
@@ -180,7 +182,7 @@
         }
       }
     };
-    this.$get = function Logger($delegate, dbService, ngDbLoggerConfig) {
+    this.$get = ["$delegate", "dbService", "ngDbLoggerConfig", function Logger($delegate, dbService, ngDbLoggerConfig) {
 
       config.dbName = ngDbLoggerConfig.dbName;
       config.outputOnly = !ngDbLoggerConfig.dbLogging;
@@ -228,10 +230,10 @@
           }
         }
       };
-    };
+    }];
   });
-
-  core.config(function ($provide, loggerProvider, ngDbLoggerConfig) {
+  /* @ngInject */
+  core.config(["$provide", "loggerProvider", "ngDbLoggerConfig", function ($provide, loggerProvider, ngDbLoggerConfig) {
 
     // logging to pouchDB
     $provide.decorator('$log', ['$delegate', 'dbService', 'ngDbLoggerConfig',
@@ -242,6 +244,6 @@
           return loggerProvider.$get[3]($delegate, dbService, ngDbLoggerConfig);
         }
       }]);
-  });
+  }]);
 
 }(angular, PouchDB));

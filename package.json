@@ -1,6 +1,6 @@
 {
   "name": "angular-pouchdb-logger",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "Enables logging to web database via pouchdb and $log delegate. The library is Ionic-aware and autoselect the best db for each platform",
   "homepage": "https://github.com/hypery2k/angular-pouchdb-logger",
   "authors": [
@@ -14,8 +14,8 @@
   "bugs": {
     "url": "https://github.com/hypery2k/angular-pouchdb-logger/issues"
   },
-  "dependencies": {
-    "pouchdb-browser": "5.4.5"
+  "peerDependencies": {
+    "pouchdb": "6.0.4"
   },
   "devDependencies": {
     "bower": "^1.4.1",
@@ -62,6 +62,8 @@
   },
   "scripts": {
     "pretest": "eslint src/*.js && eslint test/*.js && nsp check",
+    "build": "grunt build",
+    "prepublish": "npm run build",
     "coverage": "istanbul --cover nodeunit test/tests.js && istanbul-coveralls --no-rm",
     "test": "grunt test"
   }
