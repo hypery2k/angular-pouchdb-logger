@@ -1,7 +1,7 @@
-/* angular-pouchdb-logger - Version 0.3.4, 14-08-2016
- *
+/* angular-pouchdb-logger - Version 0.3.7, 08-09-2016
+ * 
  * Enables logging to web database via pouchdb and $log delegate. The library is Ionic-aware and autoselect the best db for each platform
- *
+ * 
  * Copyright 2016  - Martin Reinhardt <contact@martinreinhardt-online.de>
  * License MIT
  */
