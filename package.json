@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "bower": "^1.4.1",
-    "coveralls": "2.11.14",
+    "coveralls": "2.11.15",
     "eslint": "3.9.1",
     "grunt": "^1.0.1",
     "grunt-autoprefixer": "^3.0.3",
