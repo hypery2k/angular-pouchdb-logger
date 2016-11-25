@@ -20,7 +20,7 @@
   "devDependencies": {
     "bower": "^1.4.1",
     "coveralls": "2.11.14",
-    "eslint": "3.10.0",
+    "eslint": "3.11.0",
     "grunt": "^1.0.1",
     "grunt-autoprefixer": "^3.0.3",
     "grunt-banner": "^0.6.0",
