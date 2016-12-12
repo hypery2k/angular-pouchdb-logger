@@ -18,12 +18,12 @@
     "error"
   ],
   "dependencies": {
-    "angular": "^1.2.12",
-    "pouchdb": "^5.0.0"
+    "angular": "^1.4.0",
+    "pouchdb": "^6.0.0"
   },
   "devDependencies": {
     "es5-shim": "4.1.7",
-    "angular-mocks": "^1.2.12"
+    "angular-mocks": "1.6.0"
   },
   "ignore": [
     "**/.*",
@@ -31,5 +31,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "resolutions": {
+    "angular": "1.6.0"
+  }
 }
