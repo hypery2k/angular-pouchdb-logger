@@ -1,4 +1,4 @@
-/* angular-pouchdb-logger - Version 0.3.8, 12-12-2016
+/* angular-pouchdb-logger - Version 0.3.7, 12-12-2016
  * 
  * Enables logging to web database via pouchdb and $log delegate. The library is Ionic-aware and autoselect the best db for each platform
  * 
@@ -177,7 +177,8 @@
           logEntry = {
             timestamp: timestamp,
             level: pLogLevel,
-            details: '' + message
+            details: '' + message,
+            arguments: pArguments
           };
         if (db && db.bulkDocs) {
           logEntry._id = '' + timestamp.getTime();
