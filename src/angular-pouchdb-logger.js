@@ -170,7 +170,8 @@
           logEntry = {
             timestamp: timestamp,
             level: pLogLevel,
-            details: '' + message
+            details: '' + message,
+            arguments: pArguments
           };
         if (db && db.bulkDocs) {
           logEntry._id = '' + timestamp.getTime();
