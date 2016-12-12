@@ -1,9 +1,10 @@
-/tmp/
-/.tmp/
-/.sass-cache/
-/bower_components/
-/node/
-/node_modules/
+tmp/
+.idea/
+.tmp/
+.sass-cache/
+bower_components/
+node/
+node_modules/
 
 # Eclipse files
 **/.project
@@ -13,12 +14,7 @@
 **/target
 **/bin
 **/.springBeans
+test/
 taget/*
 dist/test-report/*
 dist/*.min.js
-
-# IDEA files
-.idea/*
-*.iml
-*.ipr
-*.iws
