@@ -31,7 +31,7 @@
     "release:patch": "npm run release:pre && npm version patch && npm run release:post && git push origin && git push origin --tags && npm publish"
   },
   "peerDependencies": {
-    "angular": "^1.4.0",
+    "angular": "1.6.0",
     "pouchdb": "^6.0.0"
   },
   "devDependencies": {
