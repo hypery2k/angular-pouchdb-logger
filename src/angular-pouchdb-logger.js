@@ -41,6 +41,10 @@
     if (pLoglevel) {
       // filter
       if (pLoglevel === logEntry.level) {
+        try {
+          logEntry.arguments = JSON.parse(logEntry.arguments)
+        } catch (ignored) {
+        }
         logs.push(logEntry);
       }
     } else {
@@ -171,7 +175,7 @@
             timestamp: timestamp,
             level: pLogLevel,
             details: '' + message,
-            arguments: pArguments
+            arguments: JSON.stringify(pArguments)
           };
         if (db && db.bulkDocs) {
           logEntry._id = '' + timestamp.getTime();
