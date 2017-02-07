@@ -32,7 +32,7 @@
   },
   "peerDependencies": {
     "angular": "^1.4.0",
-    "pouchdb": "^6.0.0"
+    "pouchdb": "^6.1.2"
   },
   "devDependencies": {
     "angular": "1.6.0",
