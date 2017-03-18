@@ -15,7 +15,7 @@
 **/bin
 **/.springBeans
 taget/*
-
+dist/*
 # IDEA files
 .idea/*
 *.iml

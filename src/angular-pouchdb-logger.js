@@ -3,11 +3,12 @@
 
   var core = angular.module('ngDbLogger.core', []);
 
-// Core
+  // Core
   /* @ngInject */
   core.constant('ngDbLoggerConfig', {
     dbName: 'logDB',
     dbLogging: true,
+    info: true,
     debug: false,
     trace: false
   });
@@ -124,6 +125,7 @@
 
     var config = {},
       log;
+    config.info = true;
     config.debug = false;
     config.outputOnly = false;
     config.trace = false;
@@ -137,6 +139,15 @@
      */
     this.outputOnly = function (value) {
       config.outputOnly = !!value;
+    };
+    /**
+     * @ngdoc function
+     * @name logService#infoLogging
+     *
+     * @param {boolean} value to configure if info entries should be logged
+     */
+    this.infoLogging = function (value) {
+      config.info = !!value;
     };
 
     /**
@@ -192,6 +203,7 @@
       config.dbName = ngDbLoggerConfig.dbName;
       config.outputOnly = !ngDbLoggerConfig.dbLogging;
       config.debug = ngDbLoggerConfig.debug;
+      config.info = ngDbLoggerConfig.info;
       if (ngDbLoggerConfig.debug) {
         // enable couchDB debug
         PouchDB.debug.enable('*');
@@ -215,8 +227,10 @@
           writeLogEntry(dbService, 'WARN', arguments);
         },
         info: function () {
-          log.info(arguments);
-          writeLogEntry(dbService, 'INFO', arguments);
+          if (config.info) {
+            log.info(arguments);
+            writeLogEntry(dbService, 'INFO', arguments);
+          }
         },
         error: function () {
           log.error(arguments);

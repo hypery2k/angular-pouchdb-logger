@@ -1,4 +1,4 @@
-/* angular-pouchdb-logger - Version 0.5.0, 08-01-2017
+/* angular-pouchdb-logger - Version 0.5.0, 18-03-2017
  * 
  * Enables logging to web database via pouchdb and $log delegate. The library is Ionic-aware and autoselect the best db for each platform
  * 
@@ -15,6 +15,7 @@
   core.constant('ngDbLoggerConfig', {
     dbName: 'logDB',
     dbLogging: true,
+    info: true,
     debug: false,
     trace: false
   });
@@ -131,6 +132,7 @@
 
     var config = {},
       log;
+    config.info = true;
     config.debug = false;
     config.outputOnly = false;
     config.trace = false;
@@ -144,6 +146,15 @@
      */
     this.outputOnly = function (value) {
       config.outputOnly = !!value;
+    };
+    /**
+     * @ngdoc function
+     * @name logService#infoLogging
+     *
+     * @param {boolean} value to configure if info entries should be logged
+     */
+    this.infoLogging = function (value) {
+      config.info = !!value;
     };
 
     /**
@@ -199,6 +210,7 @@
       config.dbName = ngDbLoggerConfig.dbName;
       config.outputOnly = !ngDbLoggerConfig.dbLogging;
       config.debug = ngDbLoggerConfig.debug;
+      config.info = ngDbLoggerConfig.info;
       if (ngDbLoggerConfig.debug) {
         // enable couchDB debug
         PouchDB.debug.enable('*');
@@ -222,8 +234,10 @@
           writeLogEntry(dbService, 'WARN', arguments);
         },
         info: function () {
-          log.info(arguments);
-          writeLogEntry(dbService, 'INFO', arguments);
+          if (config.info) {
+            log.info(arguments);
+            writeLogEntry(dbService, 'INFO', arguments);
+          }
         },
         error: function () {
           log.error(arguments);
