@@ -10,7 +10,7 @@
 
   var core = angular.module('ngDbLogger.core', []);
 
-// Core
+  // Core
   /* @ngInject */
   core.constant('ngDbLoggerConfig', {
     dbName: 'logDB',
