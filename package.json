@@ -62,7 +62,7 @@
     "istanbul": "0.4.3",
     "istanbul-coveralls": "1.0.3",
     "jasmine": "2.5.2",
-    "jasmine-core": "2.5.2",
+    "jasmine-core": "2.6.0",
     "jscoverage": "0.6.0",
     "karma": "0.13.8",
     "karma-chrome-launcher": "0.2.1",
