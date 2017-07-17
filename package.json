@@ -35,7 +35,7 @@
     "pouchdb": "^6.0.0"
   },
   "devDependencies": {
-    "angular": "1.6.0",
+    "angular": "1.6.5",
     "bower": "1.4.1",
     "conventional-changelog-cli": "1.2.0",
     "coveralls": "2.11.9",
