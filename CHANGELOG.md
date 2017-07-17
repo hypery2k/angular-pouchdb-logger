@@ -1,10 +1,30 @@
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/hypery2k/angular-pouchdb-logger/compare/v0.6.0...v0.7.0) (2017-07-17)
+
+
+### Features
+
+* **info-logging:** Allow disabling of info logging ([ff11686](https://github.com/hypery2k/angular-pouchdb-logger/commit/ff11686))
+* **WKWebView:** Adding support for WKWebView and idb ([23f0b7f](https://github.com/hypery2k/angular-pouchdb-logger/commit/23f0b7f))
+
+
+
 <a name="0.6.0"></a>
-# [0.6.0](https://github.com/hypery2k/angular-pouchdb-logger/compare/0.3.5...v0.6.0) (2017-03-18)
+# [0.6.0](https://github.com/hypery2k/angular-pouchdb-logger/compare/v0.5.0...v0.6.0) (2017-03-18)
 
 
 ### Features
 
 * **info-logging:** Allow disabling of info logging ([d4627de](https://github.com/hypery2k/angular-pouchdb-logger/commit/d4627de))
+
+
+
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/hypery2k/angular-pouchdb-logger/compare/0.3.5...v0.5.0) (2017-01-08)
+
+
+### Features
+
 * **logging:** Support all arg logging ([53dabf2](https://github.com/hypery2k/angular-pouchdb-logger/commit/53dabf2))
 
 
