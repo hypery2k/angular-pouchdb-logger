@@ -61,9 +61,8 @@ module.exports = function (config) {
 
     // Which plugins to enable
     plugins: [
-      "karma-phantomjs-launcher",
       "karma-chrome-launcher",
-      "karma-jasmine-html-reporter",
+      //"karma-jasmine-html-reporter",
       "karma-jasmine",
       "karma-junit-reporter"
     ],
@@ -71,7 +70,7 @@ module.exports = function (config) {
     reporters: [
       'progress',
       'junit',
-      'html'
+      //'html'
     ],
 
     junitReporter: {
