@@ -48,7 +48,7 @@
     "grunt-cli": "0.1.13",
     "grunt-concurrent": "2.0.0",
     "grunt-connect-proxy": "0.2.0",
-    "grunt-contrib-clean": "0.6.0",
+    "grunt-contrib-clean": "1.1.0",
     "grunt-contrib-concat": "0.5.1",
     "grunt-contrib-connect": "0.10.1",
     "grunt-contrib-copy": "0.8.0",
