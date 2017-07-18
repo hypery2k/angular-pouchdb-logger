@@ -24,27 +24,31 @@
   core.factory('dbService', function () {
     var logDB;
 
+    function getCordovaAdapter(dbName) {
+      // cordova ionic platform
+      // try cordova-sqlite
+      if (PouchDB.adapters['cordova-sqlite']) {
+        return new PouchDB(dbName, {adapter: 'cordova-sqlite', size: 50, location: 'default'});
+      } else {
+        if (ionic.Platform.isAndroid() || ionic.Platform.isWindowsPhone()) {
+          return new PouchDB(dbName, {adapter: 'idb', size: 50, location: 'default'});
+        } else {
+          if (window.indexedDB) {
+            // WKWebView
+            return new PouchDB(dbName, {adapter: 'idb', size: 50, location: 'default'});
+          } else {
+            // default use websql
+            return new PouchDB(dbName, {adapter: 'websql', size: 50, location: 'default'});
+          }
+        }
+      }
+    }
+
     // PUBLIC API
     return function (dbName) {
       if (!logDB) {
         if (typeof ionic !== 'undefined' && typeof cordova !== 'undefined') {
-          // cordova ionic platform
-          // try cordova-sqlite
-          if (PouchDB.adapters['cordova-sqlite']) {
-            logDB = new PouchDB(dbName, {adapter: 'cordova-sqlite', size: 50, location: 'default'});
-          } else {
-            if (ionic.Platform.isAndroid() || ionic.Platform.isWindowsPhone()) {
-              logDB = new PouchDB(dbName, {adapter: 'idb', size: 50, location: 'default'});
-            } else {
-              if (window.indexedDB) {
-                // WKWebView
-                logDB = new PouchDB(dbName, {adapter: 'idb', size: 50, location: 'default'});
-              } else {
-                // default use websql
-                logDB = new PouchDB(dbName, {adapter: 'websql', size: 50, location: 'default'});
-              }
-            }
-          }
+          logDB = getCordovaAdapter(dbName);
         } else {
           // default use websql
           logDB = new PouchDB(dbName, {adapter: 'websql'});

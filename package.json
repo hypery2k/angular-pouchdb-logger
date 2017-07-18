@@ -18,7 +18,7 @@
     "clean": "rm -rf dist/",
     "pretest": "eslint src/*.js && eslint test/*.js && nsp check",
     "build": "grunt build",
-    "build:add": "git add dist/* && git commit -m 'chore(build): updated distribution package'",
+    "build:add": "git add dist/*.js && git commit -m 'chore(build): updated distribution package'",
     "prepublish": "npm run build",
     "coverage": "istanbul --cover nodeunit test/tests.js && istanbul-coveralls --no-rm",
     "test": "grunt test",
