@@ -1,3 +1,13 @@
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/hypery2k/angular-pouchdb-logger/compare/v0.7.0...v0.8.0) (2017-07-18)
+
+
+### Features
+
+* **cordova:** Support for cordova-sqlite ([f2cb15c](https://github.com/hypery2k/angular-pouchdb-logger/commit/f2cb15c))
+
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/hypery2k/angular-pouchdb-logger/compare/v0.6.0...v0.7.0) (2017-07-17)
 
@@ -20,7 +30,12 @@
 
 
 <a name="0.5.0"></a>
-# [0.5.0](https://github.com/hypery2k/angular-pouchdb-logger/compare/0.3.5...v0.5.0) (2017-01-08)
+# [0.5.0](https://github.com/hypery2k/angular-pouchdb-logger/compare/v0.4.0...v0.5.0) (2017-01-08)
+
+
+
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/hypery2k/angular-pouchdb-logger/compare/0.3.5...v0.4.0) (2016-12-12)
 
 
 ### Features
