@@ -22,15 +22,20 @@
       if (!logDB) {
         if (typeof ionic !== 'undefined' && typeof cordova !== 'undefined') {
           // cordova ionic platform
-          if (ionic.Platform.isAndroid() || ionic.Platform.isWindowsPhone()) {
-            logDB = new PouchDB(dbName, {adapter: 'idb', size: 50, location: 'default'});
+          // try cordova-sqlite
+          if (PouchDB.adapters['cordova-sqlite']) {
+            logDB = new PouchDB(dbName, {adapter: 'cordova-sqlite', size: 50, location: 'default'});
           } else {
-            if (window.indexedDB) {
-              // WKWebView
+            if (ionic.Platform.isAndroid() || ionic.Platform.isWindowsPhone()) {
               logDB = new PouchDB(dbName, {adapter: 'idb', size: 50, location: 'default'});
             } else {
-              // default use websql
-              logDB = new PouchDB(dbName, {adapter: 'websql', size: 50, location: 'default'});
+              if (window.indexedDB) {
+                // WKWebView
+                logDB = new PouchDB(dbName, {adapter: 'idb', size: 50, location: 'default'});
+              } else {
+                // default use websql
+                logDB = new PouchDB(dbName, {adapter: 'websql', size: 50, location: 'default'});
+              }
             }
           }
         } else {
