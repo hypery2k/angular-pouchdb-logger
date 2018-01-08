@@ -1,5 +1,7 @@
 # Angular PouchDB Logger 
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/hypery2k/angular-pouchdb-logger.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/hypery2k/angular-pouchdb-logger.svg?branch=master)](https://travis-ci.org/hypery2k/angular-pouchdb-logger)
 [![Build status](https://ci.appveyor.com/api/projects/status/qbdypq5n7p4x3i78?svg=true)](https://ci.appveyor.com/project/hypery2k/angular-pouchdb-logger)
 [![Bower version](https://badge.fury.io/bo/angular-pouchdb-logger.svg)](http://badge.fury.io/bo/angular-pouchdb-logger)
