@@ -18,22 +18,20 @@
     var logDB;
 
     function getCordovaAdapter(dbName) {
-      // cordova ionic platform
-      // try cordova-sqlite
-      if (PouchDB.adapters['cordova-sqlite']) {
-        return new PouchDB(dbName, {adapter: 'cordova-sqlite', size: 50, location: 'default'});
-      } else {
-        if (ionic.Platform.isAndroid() || ionic.Platform.isWindowsPhone()) {
-          return new PouchDB(dbName, {adapter: 'idb', size: 50, location: 'default'});
+
+      try {
+        // try cordova-sqlite
+        if (PouchDB.adapters['cordova-sqlite']) {
+          return new PouchDB(dbName, {adapter: 'cordova-sqlite', size: 50, location: 'default'});
         } else {
-          if (window.indexedDB) {
-            // WKWebView
+          if (ionic.Platform.isAndroid() || ionic.Platform.isWindowsPhone()) {
             return new PouchDB(dbName, {adapter: 'idb', size: 50, location: 'default'});
           } else {
-            // default use websql
-            return new PouchDB(dbName, {adapter: 'websql', size: 50, location: 'default'});
+            return new PouchDB(dbName, {size: 50, location: 'default'});
           }
         }
+      } catch (ignored) {
+        return new PouchDB(dbName, {adapter: 'websql', size: 50, location: 'default'});
       }
     }
 
@@ -137,7 +135,8 @@
   core.provider('logger', function loggerProvider() {
     'use strict';
 
-    var config = {},
+    var dbInstance,
+      config = {},
       log;
     config.info = true;
     config.debug = false;
@@ -193,18 +192,20 @@
     };
     var writeLogEntry = function (dbService, pLogLevel, pArguments) {
       var message = pArguments[0];
+      if (!dbInstance) {
+        dbInstance = dbService(config.dbName);
+      }
       if (!config.outputOnly) {
         var timestamp = new Date(),
-          db = dbService(config.dbName),
           logEntry = {
             timestamp: timestamp,
             level: pLogLevel,
             details: '' + message,
             arguments: JSON.stringify(pArguments)
           };
-        if (db && db.bulkDocs) {
+        if (dbInstance && dbInstance.bulkDocs) {
           logEntry._id = '' + timestamp.getTime();
-          db.put(logEntry, function (error) {
+          dbInstance.put(logEntry, function (error) {
             if (error) {
               log.error('Error during writing log entry: ' + error);
             }
