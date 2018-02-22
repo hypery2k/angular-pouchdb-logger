@@ -50,19 +50,23 @@ module.exports = function (config) {
       "Chrome"
     ],
 
-    // This is the new content for your travis-ci configuration test
-    //  Custom launcher for Travis-CI
     customLaunchers: {
-      Chrome_travis_ci: {
+      ChromeHeadless: {
         base: 'Chrome',
-        flags: ['--no-sandbox']
+        flags: [
+          '--no-sandbox',
+          '--headless',
+          '--disable-gpu',
+          '--remote-debugging-port=9222',
+        ]
       }
     },
+
 
     // Which plugins to enable
     plugins: [
       "karma-chrome-launcher",
-      //"karma-jasmine-html-reporter",
+      "karma-jasmine-html-reporter",
       "karma-jasmine",
       "karma-junit-reporter"
     ],
@@ -70,7 +74,7 @@ module.exports = function (config) {
     reporters: [
       'progress',
       'junit',
-      //'html'
+      'kjhtml'
     ],
 
     junitReporter: {
