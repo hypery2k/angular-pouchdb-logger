@@ -1,3 +1,13 @@
+<a name="0.8.1"></a>
+## [0.8.1](https://github.com/hypery2k/angular-pouchdb-logger/compare/v0.8.0...v0.8.1) (2018-02-22)
+
+
+### Bug Fixes
+
+* **cordova:** Correct execution on iOS 11+ ([3064836](https://github.com/hypery2k/angular-pouchdb-logger/commit/3064836))
+
+
+
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/hypery2k/angular-pouchdb-logger/compare/v0.7.0...v0.8.0) (2017-07-18)
 
@@ -40,7 +50,7 @@
 
 ### Features
 
-* **logging:** Support all arg logging ([53dabf2](https://github.com/hypery2k/angular-pouchdb-logger/commit/53dabf2))
+* **logging:** Support all arg logging ([53dabf2](https://github.com/hypery2k/angular-pouchdb-logger/commit/53dabf2)), closes [#2](https://github.com/hypery2k/angular-pouchdb-logger/issues/2)
 
 
 
