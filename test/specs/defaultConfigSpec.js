@@ -7,7 +7,7 @@ describe('angular-pouchdb-logger with default config:', function () {
   'use strict';
 
   var dbLoggerService,
-  // app services
+    // app services
     busService,
     scope;
   // setup
@@ -24,7 +24,6 @@ describe('angular-pouchdb-logger with default config:', function () {
     dbLoggerService.clearLogData().then(function () {
       done();
     });
-    setInterval(scope.$digest, 100);
   });
 
   it('should log entry', function (done) {

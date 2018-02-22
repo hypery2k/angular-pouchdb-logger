@@ -24,7 +24,6 @@ describe('angular-pouchdb-logger with custom config:', function () {
     dbLoggerService.clearLogData().then(function () {
       done();
     });
-    setInterval(scope.$digest, 100);
   });
 
   it('should show debug entry', function (done) {
