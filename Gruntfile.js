@@ -1,5 +1,7 @@
 'use strict';
 
+var serveStatic = require('serve-static');
+
 module.exports = function (grunt) {
 
   // Load grunt tasks automatically
@@ -84,8 +86,8 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
-              connect().use('/bower_components', connect.static('./bower_components')),
-              connect.static(appConfig.src)
+              connect().use('/bower_components', serveStatic('./bower_components')),
+              serveStatic(appConfig.src)
             ];
           }
         }
@@ -95,10 +97,10 @@ module.exports = function (grunt) {
           port: 9001,
           middleware: function (connect) {
             return [
-              connect.static('.tmp'),
-              connect.static('test'),
-              connect().use('/bower_components', connect.static('./bower_components')),
-              connect.static(appConfig.src)
+              serveStatic('.tmp'),
+              serveStatic('test'),
+              connect().use('/bower_components', serveStatic('./bower_components')),
+              serveStatic(appConfig.src)
             ];
           }
         }
